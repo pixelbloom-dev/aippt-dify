@@ -1,0 +1,222 @@
+identity:
+  name: template-list
+  author: aippt
+  label:
+    en_US: 选择模板
+    zh_Hans: 选择模板
+    pt_BR: 选择模板
+description:
+  human:
+    en_US: 选择PPT模板
+    zh_Hans: 选择PPT模板
+    pt_BR: 选择PPT模板
+  llm: 选择PPT模板
+parameters:
+  - name: page
+    type: number
+    required: true
+    default: "1"
+    label:
+      en_US: 模板页码
+      zh_Hans: 模板页码
+      pt_BR: 模板页码
+    human_description:
+      en_US: 默认是第一页
+      zh_Hans: 默认是第一页
+      pt_BR: 默认是第一页
+    llm_description: 默认是第一页
+    form: form
+  - name: page_size
+    type: number
+    required: true
+    default: "20"
+    label:
+      en_US: 模板单页显示数量
+      zh_Hans: 模板单页显示数量
+      pt_BR: 模板单页显示数量
+    human_description:
+      en_US: 默认20个模板
+      zh_Hans: 默认20个模板
+      pt_BR: 默认20个模板
+    llm_description: 默认20个模板
+    form: form
+  - name: colour
+    type: select
+    required: true
+    label:
+      en_US: 模板颜色
+      zh_Hans: 模板颜色
+      pt_BR: 模板颜色
+    human_description:
+      en_US: 默认橙色
+      zh_Hans: 默认橙色
+      pt_BR: 默认橙色
+    llm_description: 默认橙色
+    form: form
+    default: "1"
+    options:
+      - label:
+          en_US: 橙色
+          zh_Hans: 橙色
+        value: "1"
+      - label:
+          en_US: 黄色
+          zh_Hans: 黄色
+        value: "3"
+      - label:
+          en_US: 绿色
+          zh_Hans: 绿色
+        value: "4"
+      - label:
+          en_US: 粉色
+          zh_Hans: 粉色
+        value: "13"
+      - label:
+          en_US: 青色
+          zh_Hans: 青色
+        value: "5"
+      - label:
+          en_US: 紫色
+          zh_Hans: 紫色
+        value: "6"
+      - label:
+          en_US: 蓝色
+          zh_Hans: 蓝色
+        value: "7"
+      - label:
+          en_US: 黑色
+          zh_Hans: 黑色
+        value: "8"
+      - label:
+          en_US: 灰色
+          zh_Hans: 灰色
+        value: "9"
+      - label:
+          en_US: 棕色
+          zh_Hans: 棕色
+        value: "11"
+      - label:
+          en_US: 红色
+          zh_Hans: 红色
+        value: "2"
+  - name: suit_style
+    type: select
+    required: true
+    label:
+      en_US: 模板风格
+      zh_Hans: 模板风格
+      pt_BR: 模板风格
+    human_description:
+      en_US: 默认简约
+      zh_Hans: 默认简约
+      pt_BR: 默认简约
+    llm_description:
+    form: form
+    default: "1"
+    options:
+      - label:
+          en_US: 简约
+          zh_Hans: 简约
+        value: "1"
+      - label:
+          en_US: 商务
+          zh_Hans: 商务
+        value: "2"
+      - label:
+          en_US: 科技
+          zh_Hans: 科技
+        value: "7"
+      - label:
+          en_US: 插画
+          zh_Hans: 插画
+        value: "4"
+      - label:
+          en_US: 政务
+          zh_Hans: 政务
+        value: "5"
+      - label:
+          en_US: 弥散
+          zh_Hans: 弥散
+        value: "3"
+      - label:
+          en_US: 潮流
+          zh_Hans: 潮流
+        value: "6"
+      - label:
+          en_US: 国风
+          zh_Hans: 国风
+        value: "13"
+      - label:
+          en_US: 立体
+          zh_Hans: 立体
+        value: "10"
+      - label:
+          en_US: 复古
+          zh_Hans: 复古
+        value: "9"
+  - name: suit_scene
+    type: select
+    required: true
+    label:
+      en_US: 模板场景
+      zh_Hans: 模板场景
+      pt_BR: 模板场景
+    human_description:
+      en_US: 默认总结汇报
+      zh_Hans: 默认总结汇报
+      pt_BR: 默认总结汇报
+    llm_description:
+    form: form
+    default: "2"
+    options:
+      - label:
+          en_US: 总结汇报
+          zh_Hans: 总结汇报
+        value: "2"
+      - label:
+          en_US: 教育培训
+          zh_Hans: 教育培训
+        value: "6"
+      - label:
+          en_US: 医学医疗
+          zh_Hans: 医学医疗
+        value: "8"
+      - label:
+          en_US: 营销推广
+          zh_Hans: 营销推广
+        value: "7"
+      - label:
+          en_US: 商业计划
+          zh_Hans: 商业计划
+        value: "1"
+      - label:
+          en_US: 高校专区
+          zh_Hans: 高校专区
+        value: "4"
+      - label:
+          en_US: 企业介绍
+          zh_Hans: 企业介绍
+        value: "3"
+      - label:
+          en_US: 党政宣传
+          zh_Hans: 党政宣传
+        value: "9"
+      - label:
+          en_US: 自我介绍
+          zh_Hans: 自我介绍
+        value: "12"
+      - label:
+          en_US: 分析报告
+          zh_Hans: 分析报告
+        value: "15"
+      - label:
+          en_US: 发布会
+          zh_Hans: 发布会
+        value: "5"
+      - label:
+          en_US: 公益宣传
+          zh_Hans: 公益宣传
+        value: "13"
+extra:
+  python:
+    source: tools/template-list.py

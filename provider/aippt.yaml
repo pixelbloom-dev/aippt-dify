@@ -1,0 +1,47 @@
+identity:
+  author: pixelbloom
+  name: aippt
+  label:
+    en_US: AiPPT.cn
+    zh_Hans: AiPPT.cn
+    pt_BR: AiPPT.cn
+  description:
+    en_US: 一句话，一分钟，AI一键生成PPT
+    zh_Hans: 一句话，一分钟，AI一键生成PPT
+    pt_BR: 一句话，一分钟，AI一键生成PPT
+  icon: aippt.png
+credentials_for_provider:
+  api_key:
+    type: text-input
+    required: true
+    label:
+      en_US: API KEY
+      zh_Hans: API KEY
+    placeholder:
+      en_US: 请输入，您在AIPPT申请的API KEY
+      zh_Hans: 请输入,您在AIPPT申请的API KEY
+    help:
+      en_US: 点击如何获取，了解获取方式
+      zh_Hans: 点击如何获取，了解获取方式
+    url: https://open.aippt.cn/
+  secret_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: SECRET KEY
+      zh_Hans: SECRET KEY
+    placeholder:
+      en_US: 请输入,您在AIPPT申请的SECRET KEY
+      zh_Hans: 请输入,您在AIPPT申请的SECRET KEY
+    help:
+      en_US: 点击如何获取，了解获取方式
+      zh_Hans: 点击如何获取，了解获取方式
+    url: https://open.aippt.cn/
+tools:
+  - tools/generate-outline.yaml # 生成大纲
+  - tools/generate-content.yaml # 生成内容
+  - tools/template-list.yaml # 获取模板列表
+  - tools/generate-design.yaml # 生成作品
+extra:
+  python:
+    source: provider/aippt.py

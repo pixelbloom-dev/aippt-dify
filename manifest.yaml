@@ -1,0 +1,50 @@
+version: 0.0.1
+type: plugin
+author: pixelbloom
+name: aippt
+label:
+  en_US: AiPPT.cn
+  ja_JP: AiPPT.cn
+  zh_Hans: AiPPT.cn
+  pt_BR: AiPPT.cn
+description:
+  en_US: 一句话，一分钟，AI一键生成PPT
+  ja_JP: 一句话，一分钟，AI一键生成PPT
+  zh_Hans: 一句话，一分钟，AI一键生成PPT
+  pt_BR: 一句话，一分钟，AI一键生成PPT
+icon: aippt.png
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    model:
+      enabled: true
+      llm: true
+      text_embedding: true
+      rerank: true
+      tts: true
+      speech2text: true
+      moderation: true
+    endpoint:
+      enabled: true
+    app:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  tools:
+    - provider/aippt.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2025-04-07T14:58:33.211121+08:00
+privacy: PRIVACY.md
+verified: false
