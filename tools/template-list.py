@@ -23,7 +23,7 @@ class TemplateListTool(Tool):
             yield self.create_json_message(resp)
 
         except AipptApiException as e:
-            if e.code == 43103:  # token 不合法，清空api_key，token 重新获取
+            if e.code == 43103: # token invalid，clear api_key，token reset get
                 self.session.storage.delete('api_key')
                 self.session.storage.delete('token')
             raise ToolProviderCredentialValidationError(str(e))
@@ -37,7 +37,6 @@ class TemplateListTool(Tool):
 
             return api_key, token
         except Exception as e:
-            print("获取api_key, token失败", e)
             data = grant_token(self.runtime.credentials['api_key'], self.runtime.credentials['secret_key'])
 
             api_key:str = data['data']['api_key']

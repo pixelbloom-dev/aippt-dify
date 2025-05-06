@@ -9,7 +9,6 @@ import json
 Channel = 'aippt-dify'
 Host = 'https://co.aippt.cn'
 
-# 自定义异常类
 class AipptApiException(Exception):
     def __init__(self, message, code=None):
         self.message = message
@@ -21,7 +20,7 @@ class AipptApiException(Exception):
             return f"[Error {self.code}] {self.message}"
         return self.message
 
-# 获取鉴权
+# grant_token
 def grant_token(api_key:str, secret_key:str):
     url = Host + '/api/grant/token'
     # 获取当前时间的秒级时间戳
@@ -29,7 +28,7 @@ def grant_token(api_key:str, secret_key:str):
 
     # 生成签名
     body = f"GET@/api/grant/token/@{timestamp}"
-    print("签名body：", body)
+    print("signature body：", body)
     # 使用 HMAC-SHA1 进行加密
     hashed = hmac.new(secret_key.encode(), body.encode(), hashlib.sha1)
     # 将加密结果输出为 Base64 编码
@@ -45,7 +44,7 @@ def grant_token(api_key:str, secret_key:str):
         "uid": 'dify'
     }
 
-    print("[获取鉴权] Url:", url, " Headers:", headers, " Params:", params)
+    print("[grant_token] Url:", url, " Headers:", headers, " Params:", params)
 
     resp = requests.get(url, headers=headers, params=params)
     resp.raise_for_status()
@@ -53,7 +52,7 @@ def grant_token(api_key:str, secret_key:str):
     print("Response JSON:", data)
 
     if 'code' not in data:
-        raise Exception('code 不存在')
+        raise Exception('code not found')
 
     if data['code'] != 0:
         raise Exception(data['msg'])
@@ -66,7 +65,7 @@ class AipptApi:
         self.api_key = api_key
         self.token = token
 
-    # 步骤1.任务创建
+    # step 1.create_task
     def create_task(self, title, page, group, scene, tone):
         url = Host + '/api/ai/chat/v2/task'
         senior_options = {
@@ -91,7 +90,7 @@ class AipptApi:
             'x-channel': Channel,
             'x-token': self.token,
         }
-        print("[步骤1.任务创建] Url:", url, " Headers:", headers, " Params:", params)
+        print("[step 1.create_task] Url:", url, " Headers:", headers, " Params:", params)
 
         # resp = requests.post(url, headers=headers, data=params, files=files)
         resp = requests.post(url, headers=headers, data=params)
@@ -103,7 +102,7 @@ class AipptApi:
 
         return data
 
-    # 步骤2.生成大纲
+    # step 2.generate_outline
     def generate_outline(self, task_id, callback):
         url = Host + '/api/ai/chat/outline'
         params = {
@@ -117,7 +116,7 @@ class AipptApi:
             'Accept': 'text/event-stream',
             'Content-Type': 'text/event-stream',
         }
-        print("[步骤2.生成大纲] Url:", url, " Headers:", headers, " Params:", params)
+        print("[step 2.generate_outline] Url:", url, " Headers:", headers, " Params:", params)
 
         response = requests.get(url, headers=headers, params=params, stream=True)
         response.raise_for_status()
@@ -154,7 +153,7 @@ class AipptApi:
 
 
 
-    # 步骤2.大纲生成内容 (新)
+    # step 3.chat_content
     def chat_content(self, task_id):
         url = Host + '/api/ai/chat/v2/content'
         params = {
@@ -165,7 +164,7 @@ class AipptApi:
             'x-channel': Channel,
             'x-token': self.token,
         }
-        print("[步骤2.大纲生成内容 (新)] Url:", url, " Headers:", headers, " Params:", params)
+        print("[step 3.chat_content] Url:", url, " Headers:", headers, " Params:", params)
 
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()
@@ -176,7 +175,7 @@ class AipptApi:
 
         return data
 
-    # 步骤3.大纲生成内容结果查询 (新)
+    # step 4.chat_content_check
     def chat_content_check(self, ticket):
         url = Host + '/api/ai/chat/v2/content/check'
         params = {
@@ -187,7 +186,7 @@ class AipptApi:
             'x-channel': Channel,
             'x-token': self.token,
         }
-        print("[步骤3.大纲生成内容结果查询 (新)] Url:", url, " Headers:", headers, " Params:", params)
+        print("[step 4.chat_content_check] Url:", url, " Headers:", headers, " Params:", params)
 
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()
@@ -198,7 +197,7 @@ class AipptApi:
 
         return data
 
-    # 模板套装列表
+    # template_component
     def template_component(self, page: int, page_size: int, suit_scene: int, suit_style: int, colour: int):
         url = Host + '/api/template_component/suit/search'
         params = {
@@ -213,7 +212,7 @@ class AipptApi:
             'x-channel': Channel,
             'x-token': self.token,
         }
-        print("[模板套装列表] Url:", url, " Headers:", headers, " Params:", params)
+        print("[template_component] Url:", url, " Headers:", headers, " Params:", params)
 
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()
@@ -224,7 +223,7 @@ class AipptApi:
 
         return data
 
-    # 作品生成
+    # design_save
     def design_save(self, task_id, template_id):
         url = Host + '/api/design/v2/save'
         params = {
@@ -237,7 +236,7 @@ class AipptApi:
             'x-channel': Channel,
             'x-token': self.token,
         }
-        print("[作品生成] Url:", url, " Headers:", headers, " Params:", params)
+        print("[design_save] Url:", url, " Headers:", headers, " Params:", params)
 
         response = requests.post(url, headers=headers, data=params)
         response.raise_for_status()
@@ -248,7 +247,7 @@ class AipptApi:
 
         return data
 
-    # 作品导出
+    # design_export
     def design_export(self, design_id):
         url = Host + '/api/download/export/file'
         params = {
@@ -262,7 +261,7 @@ class AipptApi:
             'x-channel': Channel,
             'x-token': self.token,
         }
-        print("[作品导出] Url:", url, " Headers:", headers, " Params:", params)
+        print("[design_export] Url:", url, " Headers:", headers, " Params:", params)
 
         response = requests.post(url, headers=headers, data=params)
         response.raise_for_status()
@@ -273,7 +272,7 @@ class AipptApi:
 
         return data
 
-    # 作品导出结果查询
+    # design_export_result
     def design_export_result(self, task_key):
         url = Host + '/api/download/export/file/result'
         params = {
@@ -284,7 +283,7 @@ class AipptApi:
             'x-channel': Channel,
             'x-token': self.token,
         }
-        print("[作品导出结果查询] Url:", url, " Headers:", headers, " Params:", params)
+        print("[design_export_result] Url:", url, " Headers:", headers, " Params:", params)
         response = requests.post(url, headers=headers, data=params)
         response.raise_for_status()
         data = response.json()

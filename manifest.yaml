@@ -8,10 +8,10 @@ label:
   zh_Hans: AiPPT.cn
   pt_BR: AiPPT.cn
 description:
-  en_US: 一句话，一分钟，AI一键生成PPT
-  ja_JP: 一句话，一分钟，AI一键生成PPT
+  en_US: One sentence, one minute, AI instantly generates PPT
+  ja_JP: 一文、1分で、AIが瞬時にPPTを生成
   zh_Hans: 一句话，一分钟，AI一键生成PPT
-  pt_BR: 一句话，一分钟，AI一键生成PPT
+  pt_BR: One sentence, one minute, AI instantly generates PPT
 icon: aippt.png
 resource:
   memory: 268435456

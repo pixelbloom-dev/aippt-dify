@@ -25,16 +25,16 @@ class GenerateContentTool(Tool):
             while True:
                 content_check = self.AipptApi.chat_content_check(content['data'])
                 if content_check['data']['status'] == 1:
-                    print("内容生成进行中")
+                    print("GenerateContent int")
                 elif content_check['data']['status'] == 2:
-                    print("内容生成完成")
+                    print("GenerateContent complete")
                     break
 
                 time.sleep(2)
 
             yield self.create_text_message(content_check['data']['content'])
         except AipptApiException as e:
-            if e.code == 43103:  # token 不合法，清空api_key，token 重新获取
+            if e.code == 43103:  # token invalid，clear api_key，token reset get
                 self.session.storage.delete('api_key')
                 self.session.storage.delete('token')
             raise ToolProviderCredentialValidationError(str(e))
@@ -49,7 +49,6 @@ class GenerateContentTool(Tool):
 
             return api_key, token
         except Exception as e:
-            print("获取api_key, token失败", e)
             data = grant_token(self.runtime.credentials['api_key'], self.runtime.credentials['secret_key'])
 
             api_key:str = data['data']['api_key']

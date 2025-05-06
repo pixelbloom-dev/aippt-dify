@@ -6,9 +6,9 @@ identity:
     zh_Hans: AiPPT.cn
     pt_BR: AiPPT.cn
   description:
-    en_US: 一句话，一分钟，AI一键生成PPT
+    en_US: One sentence, one minute, AI instantly generates PPT
     zh_Hans: 一句话，一分钟，AI一键生成PPT
-    pt_BR: 一句话，一分钟，AI一键生成PPT
+    pt_BR: One sentence, one minute, AI instantly generates PPT
   icon: aippt.png
 credentials_for_provider:
   api_key:
@@ -18,10 +18,10 @@ credentials_for_provider:
       en_US: API KEY
       zh_Hans: API KEY
     placeholder:
-      en_US: 请输入，您在AIPPT申请的API KEY
+      en_US: Please enter the API KEY you applied for from AiPPT
       zh_Hans: 请输入,您在AIPPT申请的API KEY
     help:
-      en_US: 点击如何获取，了解获取方式
+      en_US: Click to learn how to obtain your key
       zh_Hans: 点击如何获取，了解获取方式
     url: https://open.aippt.cn/
   secret_key:
@@ -31,17 +31,17 @@ credentials_for_provider:
       en_US: SECRET KEY
       zh_Hans: SECRET KEY
     placeholder:
-      en_US: 请输入,您在AIPPT申请的SECRET KEY
+      en_US: Please enter the SECRET KEY you applied for from AiPPT
       zh_Hans: 请输入,您在AIPPT申请的SECRET KEY
     help:
-      en_US: 点击如何获取，了解获取方式
+      en_US: Click to learn how to obtain your key
       zh_Hans: 点击如何获取，了解获取方式
     url: https://open.aippt.cn/
 tools:
-  - tools/generate-outline.yaml # 生成大纲
-  - tools/generate-content.yaml # 生成内容
-  - tools/template-list.yaml # 获取模板列表
-  - tools/generate-design.yaml # 生成作品
+  - tools/generate-outline.yaml
+  - tools/generate-content.yaml
+  - tools/template-list.yaml
+  - tools/generate-design.yaml
 extra:
   python:
     source: provider/aippt.py
